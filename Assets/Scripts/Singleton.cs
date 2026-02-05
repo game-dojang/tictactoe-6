@@ -36,5 +36,6 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
             Destroy(gameObject);
         }
     }
+    
     protected abstract void OnSceneLoad(Scene scene, LoadSceneMode mode);
 }
