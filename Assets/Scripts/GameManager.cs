@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Constants;
 
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private GameObject settingsPanelPrefab;
     [SerializeField] private Canvas canvas;
+
+    // 게임의 종류 (싱글, 듀얼)
+    private GameType _gameType;
 
     protected override void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
@@ -16,5 +20,18 @@ public class GameManager : Singleton<GameManager>
     {
         var settingsPanelObject = Instantiate(settingsPanelPrefab, canvas.transform);
         settingsPanelObject.GetComponent<SettingsPanelController>().Show();
+    }
+
+    // 씬 전환 (Main > Game)
+    public void ChangeToGameScene(GameType gameType)
+    {
+        _gameType = gameType;
+        SceneManager.LoadScene("Game");       
+    }
+
+    // 씬 전환 (Game > Main)
+    public void ChangeToMainScene()
+    {
+        SceneManager.LoadScene("Main");
     }
 }

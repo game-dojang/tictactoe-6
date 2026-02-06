@@ -1,15 +1,16 @@
 using UnityEngine;
+using static Constants;
 
 public class MainPanelController : MonoBehaviour
 {
     public void OnClickSinglePlayButton()
     {
-        // TODO: 싱글 플레이 버튼 눌렀을 때
+        GameManager.Instance.ChangeToGameScene(GameType.SinglePlay);
     }
 
     public void OnClickDualPlayButton()
     {
-        // TODO: 2P 플레이 버튼 눌렀을 때
+        GameManager.Instance.ChangeToGameScene(GameType.DualPlay);
     }
 
     public void OnClickSettingsButton()
