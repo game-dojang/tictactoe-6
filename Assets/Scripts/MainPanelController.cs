@@ -14,6 +14,6 @@ public class MainPanelController : MonoBehaviour
 
     public void OnClickSettingsButton()
     {
-        // TODO: 설정 버튼 눌렀을 때
+        GameManager.Instance.OpenSettingsPanel();
     }
 }

@@ -24,3 +24,7 @@ This is a Unity project for a Tic Tac Toe game. The project is in its initial ph
 *   **Scripts**: All C# scripts should be placed in the `Assets/Scripts` directory.
 *   **Scenes**: All scenes should be placed in the `Assets/Scenes` directory.
 *   **Assets**: All other assets (images, models, etc.) should be organized in subdirectories within the `Assets` directory.
+
+## Agent Instructions
+
+*   **Language Preference**: 항상 한국어로 답변해주세요.
