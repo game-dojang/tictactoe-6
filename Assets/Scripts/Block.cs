@@ -10,11 +10,17 @@ public class Block : MonoBehaviour
     public enum MarkerType { None, O, X }
     private int _blockIndex;
 
+    public delegate void OnBlockClicked(int index);
+    private OnBlockClicked _onBlockClicked;
+
     // 블록 초기화
-    public void InitMarker(int blockIndex)
+    public void InitMarker(int blockIndex, OnBlockClicked onBlockClicked)
     {
         _blockIndex = blockIndex;
         SetMarker(MarkerType.None);
+
+        // 클릭 콜백 설정
+        _onBlockClicked = onBlockClicked;
     }
 
     // 마커 설정
@@ -35,12 +41,12 @@ public class Block : MonoBehaviour
     }
 
     private void OnMouseUpAsButton()
-    {
+    {        
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
         }
 
-        Debug.Log("Block Clicked: " + _blockIndex);
+        _onBlockClicked?.Invoke(_blockIndex);
     }
 }

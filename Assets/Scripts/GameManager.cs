@@ -12,7 +12,18 @@ public class GameManager : Singleton<GameManager>
 
     protected override void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
+        // 새로운 씬에서 Canvas 참조 가져오기
         _canvas = FindFirstObjectByType<Canvas>();
+
+        if (scene.name == SCENE_GAME)
+        {
+            // 게임 씬에서 블록 초기화
+            var blockController = FindFirstObjectByType<BlockController>();
+            if (blockController != null)
+            {
+                blockController.InitBlocks();
+            }
+        }
     }
 
     // Settings 패널 열기
