@@ -3,7 +3,7 @@ using static Constants;
 public class GameLogic
 {
     // 화면에 Block을 제어하기 위한 변수
-    private BlockController _blockController;
+    public BlockController blockController;
 
     // 보드의 상태
     private PlayerType[,] _board;
@@ -18,7 +18,7 @@ public class GameLogic
     public GameLogic(GameType gameType, BlockController blockController)
     {
         // BlockController 할당
-        _blockController = blockController;
+        this.blockController = blockController;
 
         // 보드 정보 초기화
         _board = new PlayerType[BOARD_SIZE, BOARD_SIZE];
@@ -28,13 +28,19 @@ public class GameLogic
         {
             case GameType.SinglePlay:
                 // 싱글 플레이어 모드 초기화 작업
-                playerAState = new PlayerState();
+                playerAState = new PlayerState(true);
                 playerBState = new AIState();
+                
+                // 초기 상태 설정 (예: 플레이어 A부터 시작)
+                SetState(playerAState);
                 break;
             case GameType.DualPlay:
                 // 듀얼 플레이어 모드 초기화 작업
-                playerAState = new PlayerState();
-                playerBState = new PlayerState();
+                playerAState = new PlayerState(true);
+                playerBState = new PlayerState(false);
+
+                // 초기 상태 설정 (예: 플레이어 A부터 시작)
+                SetState(playerAState);
                 break;
         }
     }
@@ -42,8 +48,27 @@ public class GameLogic
     // 턴 바뀔 때 호출되는 메서드 (상태 전환 메서드)
     public void SetState(BaseState newState)
     {
-        _currentState?.OnExit();
+        _currentState?.OnExit(this);
         _currentState = newState;
-        _currentState.OnEnter();
+        _currentState.OnEnter(this);
+    }
+
+    // 마커 표시를 위한 메서드
+    public void PlaceMarker(int index, PlayerType playerType)
+    {
+        blockController.PlaceMarker(index, playerType);
+    }
+
+    // 턴 변경
+    public void ChangeGameState()
+    {
+        if (_currentState == playerAState)
+        {
+            SetState(playerBState);
+        }
+        else
+        {
+            SetState(playerAState);
+        }
     }
 }

@@ -7,6 +7,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject settingsPanelPrefab;
     private Canvas _canvas;
 
+    // Game Logic
+    private GameLogic _gameLogic;
+
     // 게임의 종류 (싱글, 듀얼)
     private GameType _gameType;
 
@@ -23,6 +26,9 @@ public class GameManager : Singleton<GameManager>
             {
                 blockController.InitBlocks();
             }
+
+            // Game Logic 생성
+            _gameLogic = new GameLogic(GameType.DualPlay, blockController);
         }
     }
 

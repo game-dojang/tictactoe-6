@@ -1,19 +1,19 @@
 
 public class AIState : BaseState
 {
-    public override void HandleMove()
+    public override void HandleMove(GameLogic gameLogic, int index)
     {
     }
 
-    public override void HandleNextTurn()
+    public override void HandleNextTurn(GameLogic gameLogic)
     {
     }
 
-    public override void OnEnter()
+    public override void OnEnter(GameLogic gameLogic)
     {
     }
 
-    public override void OnExit()
+    public override void OnExit(GameLogic gameLogic)
     {
     }
 }
