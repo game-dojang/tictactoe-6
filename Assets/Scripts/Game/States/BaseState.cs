@@ -9,9 +9,10 @@ public abstract class BaseState
     public void ProcessMove(GameLogic gameLogic, int index, Constants.PlayerType playerType)
     {
         // 특정 위치에 마커 표시
-        gameLogic.PlaceMarker(index, playerType);
-
-        // 턴 전환
-        HandleNextTurn(gameLogic);
+        if (gameLogic.PlaceMarker(index, playerType))
+        {
+            // 턴 전환
+            HandleNextTurn(gameLogic);   
+        }
     }
 }

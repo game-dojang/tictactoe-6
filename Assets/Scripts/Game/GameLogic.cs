@@ -54,9 +54,18 @@ public class GameLogic
     }
 
     // 마커 표시를 위한 메서드
-    public void PlaceMarker(int index, PlayerType playerType)
+    public bool PlaceMarker(int index, PlayerType playerType)
     {
+        var row = index / BOARD_SIZE;
+        var col = index % BOARD_SIZE;
+
+        // 해당 위치에 이미 마커가 있는지 확인, 뭔가 있으면 false 반환
+        if (_board[row, col] != Constants.PlayerType.None) return false;
+
         blockController.PlaceMarker(index, playerType);
+        _board[row, col] = playerType;
+        
+        return true;
     }
 
     // 턴 변경
@@ -70,5 +79,16 @@ public class GameLogic
         {
             SetState(playerAState);
         }
+    }
+
+    // 게임 결과 확인
+    public void CheckGameResult()
+    {
+        // 승리 조건 확인 로직 구현 (생략)
+    }
+
+    public bool CheckGameWin(Constants.PlayerType playerType, Constants.PlayerType[,] board)
+    {
+        
     }
 }
