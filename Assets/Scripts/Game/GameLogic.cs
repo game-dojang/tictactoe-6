@@ -87,8 +87,8 @@ public class GameLogic
         // 승리 조건 확인 로직 구현 (생략)
     }
 
-    public bool CheckGameWin(Constants.PlayerType playerType, Constants.PlayerType[,] board)
-    {
+    // public bool CheckGameWin(Constants.PlayerType playerType, Constants.PlayerType[,] board)
+    // {
         
-    }
+    // }
 }
