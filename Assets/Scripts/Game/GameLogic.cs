@@ -146,6 +146,23 @@ public class GameLogic
     // 게임오버 처리
     public void EndGame(GameResult gameResult)
     {
-        // TODO: 게임오버가 되면 "게임오버" 팝업을 띄우고, 팝업에서 확인 버튼을 누르면 Main 씬으로 전환
+        string resultStr = "";
+        switch (gameResult)
+        {
+            case GameResult.Win:
+                resultStr = "Player1 승리!";
+                break;
+            case GameResult.Lose:
+                resultStr = "Player2 승리!";
+                break;
+            case GameResult.Draw:
+                resultStr = "무승부";
+                break;
+        }
+
+        GameManager.Instance.OpenConfirmPanel(resultStr, () =>
+        {
+            GameManager.Instance.ChangeToMainScene();
+        });
     }
 }

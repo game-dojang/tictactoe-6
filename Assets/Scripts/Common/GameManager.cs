@@ -5,6 +5,7 @@ using static Constants;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private GameObject settingsPanelPrefab;
+    [SerializeField] private GameObject confirmPanelPrefab;
 
     // 캔버스
     private Canvas _canvas;
@@ -51,6 +52,13 @@ public class GameManager : Singleton<GameManager>
     {
         var settingsPanelObject = Instantiate(settingsPanelPrefab, _canvas.transform);
         settingsPanelObject.GetComponent<SettingsPanelController>().Show();
+    }
+
+    // Confirm 패널 열기
+    public void OpenConfirmPanel(string message, ConfirmPanelController.OnConfirmButtonClicked onConfirmButtonClicked)
+    {
+        var confirmPanelObject = Instantiate(confirmPanelPrefab, _canvas.transform);
+        confirmPanelObject.GetComponent<ConfirmPanelController>().Show(message, onConfirmButtonClicked);
     }
 
     // 씬 전환 (Main > Game)

@@ -10,7 +10,10 @@ public class GamePanelController : MonoBehaviour
     // 뒤로가기 버튼 클릭
     public void OnClickBackButton()
     {
-        GameManager.Instance.ChangeToMainScene();
+        GameManager.Instance.OpenConfirmPanel("게임을 종료합니다.", () =>
+        {
+            GameManager.Instance.ChangeToMainScene();
+        });
     }
 
     // 설정 팝업 표시

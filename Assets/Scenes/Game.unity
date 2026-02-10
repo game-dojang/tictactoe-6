@@ -1532,6 +1532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9ada5199d3f9d49b82f31c057634c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePanelController
+  playerATurnImage: {fileID: 212403616}
+  playerBTurnImage: {fileID: 1728590575}
 --- !u!1 &1345920137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +1564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   settingsPanelPrefab: {fileID: 7362783944290803613, guid: 6993ddcc70fe6ab49be192f8d2087331, type: 3}
+  confirmPanelPrefab: {fileID: 7362783944290803613, guid: e65dd6835c4381247b5fa26f38854be6, type: 3}
 --- !u!4 &1345920139
 Transform:
   m_ObjectHideFlags: 0
