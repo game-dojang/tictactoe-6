@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     private Canvas _canvas;
 
     // 게임 화면의 UI 컨트롤러
-    private GamePanelController _gamePanelController;
+    private GamePanelController _gamePanelController; 
 
     // Game Logic
     private GameLogic _gameLogic;
@@ -37,7 +37,7 @@ public class GameManager : Singleton<GameManager>
             _gamePanelController = FindFirstObjectByType<GamePanelController>();
 
             // Game Logic 생성
-            _gameLogic = new GameLogic(GameType.DualPlay, blockController);
+            _gameLogic = new GameLogic(_gameType, blockController);
         }
     }
 

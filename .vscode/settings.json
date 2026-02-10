@@ -60,12 +60,13 @@
         "*.asset": "yaml",
         "*.meta": "yaml",
         "*.prefab": "yaml",
-        "*.unity": "yaml",
+        "*.unity": "yaml"
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "tictactoe-6.slnx"
+    "dotnet.defaultSolution": "tictactoe-6.sln",
+    "dotrush.roslyn.projectOrSolutionFiles": []
 }
