@@ -5,7 +5,12 @@ using static Constants;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private GameObject settingsPanelPrefab;
+
+    // 캔버스
     private Canvas _canvas;
+
+    // 게임 화면의 UI 컨트롤러
+    private GamePanelController _gamePanelController;
 
     // Game Logic
     private GameLogic _gameLogic;
@@ -27,9 +32,18 @@ public class GameManager : Singleton<GameManager>
                 blockController.InitBlocks();
             }
 
+            // GamePanelController 참조 가져오기
+            _gamePanelController = FindFirstObjectByType<GamePanelController>();
+
             // Game Logic 생성
             _gameLogic = new GameLogic(GameType.DualPlay, blockController);
         }
+    }
+
+    // Game O/X UI 업데이트
+    public void SetGameTurn(Constants.PlayerType playerTurnType)
+    {
+        _gamePanelController.SetPlayerTurnPanel(playerTurnType);
     }
 
     // Settings 패널 열기
