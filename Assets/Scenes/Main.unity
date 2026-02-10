@@ -768,7 +768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   settingsPanelPrefab: {fileID: 7362783944290803613, guid: 6993ddcc70fe6ab49be192f8d2087331, type: 3}
-  canvas: {fileID: 626328524}
+  confirmPanelPrefab: {fileID: 7362783944290803613, guid: e65dd6835c4381247b5fa26f38854be6, type: 3}
 --- !u!4 &427955679
 Transform:
   m_ObjectHideFlags: 0
