@@ -9,4 +9,7 @@ public static class Constants
 
     // 보드 크기
     public const int BOARD_SIZE = 3;
+
+    // 서버 주소
+    public const string ServerURL = "http://localhost:3000";
 }
