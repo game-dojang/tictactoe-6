@@ -4,6 +4,29 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
+public struct SigninData
+{
+    public string username;
+    public string password;
+}
+
+public struct SigninResult
+{
+    public string message;
+}
+
+public struct SignupData
+{
+    public string username;
+    public string nickname;
+    public string password;
+}
+
+public struct ScoreResult
+{
+    public int score;
+}
+
 public class NetworkManager : Singleton<NetworkManager>
 {
     protected override void OnSceneLoad(Scene scene, LoadSceneMode mode)
@@ -74,7 +97,6 @@ public class NetworkManager : Singleton<NetworkManager>
     /// <returns></returns>
     public IEnumerator Signin(SigninData signinData, Action success, Action failure)
     {
-
         string jsonString = JsonUtility.ToJson(signinData);
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonString);
 
@@ -110,6 +132,78 @@ public class NetworkManager : Singleton<NetworkManager>
                 var result = JsonUtility.FromJson<SigninResult>(resultString);
 
                 Debug.Log("Result: " + resultString);
+            }
+        }
+    }
+
+    public IEnumerator GetScore(Action<ScoreResult> success, Action failure)
+    {
+        using (UnityWebRequest www = new UnityWebRequest(Constants.ServerURL + "/users/score", UnityWebRequest.kHttpVerbGET))
+        {
+            www.downloadHandler = new DownloadHandlerBuffer();
+
+            string sid = PlayerPrefs.GetString("SID", null);
+            if (!string.IsNullOrEmpty(sid))
+            {
+                www.SetRequestHeader("Cookie", sid);
+            }
+
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError
+                || www.result == UnityWebRequest.Result.ProtocolError)
+            {
+                // 오류 코드별 처리
+                if (www.responseCode == 400)
+                {
+                    // 400 오류 발생 팝업 표시
+                }
+
+                failure?.Invoke();
+            }
+            else
+            {
+                var resultString = www.downloadHandler.text;
+                var result = JsonUtility.FromJson<ScoreResult>(resultString);
+                Debug.Log("Score: " + result.score);
+
+                success?.Invoke(result);
+            }
+        }
+    }
+
+    public IEnumerator Signout(Action<SigninResult> success, Action failure)
+    {
+        using (UnityWebRequest www = new UnityWebRequest(Constants.ServerURL + "/users/signout", UnityWebRequest.kHttpVerbGET))
+        {
+            www.downloadHandler = new DownloadHandlerBuffer();
+
+            string sid = PlayerPrefs.GetString("SID", null);
+            if (!string.IsNullOrEmpty(sid))
+            {
+                www.SetRequestHeader("Cookie", sid);
+            }
+
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError
+                || www.result == UnityWebRequest.Result.ProtocolError)
+            {
+                // 오류 코드별 처리
+                if (www.responseCode == 400)
+                {
+                    // 400 오류 발생 팝업 표시
+                }
+
+                failure?.Invoke();
+            }
+            else
+            {
+                var resultString = www.downloadHandler.text;
+                var result = JsonUtility.FromJson<SigninResult>(resultString);
+                Debug.Log("Score: " + result.message);
+
+                success?.Invoke(result);
             }
         }
     }

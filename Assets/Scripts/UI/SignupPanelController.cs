@@ -1,13 +1,6 @@
 using UnityEngine;
 using TMPro;
 
-public struct SignupData
-{
-    public string username;
-    public string nickname;
-    public string password;
-}
-
 public class SignupPanelController : PanelController
 {
     [SerializeField] private TMP_InputField usernameInputField;

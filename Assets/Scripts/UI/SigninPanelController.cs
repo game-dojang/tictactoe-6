@@ -1,17 +1,6 @@
 using UnityEngine;
 using TMPro;
 
-public struct SigninData
-{
-    public string username;
-    public string password;
-}
-
-public struct SigninResult
-{
-    public string message;
-}
-
 public class SigninPanelController : PanelController
 {
     [SerializeField] private TMP_InputField usernameInputField;

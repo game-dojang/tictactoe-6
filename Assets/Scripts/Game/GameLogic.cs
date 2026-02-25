@@ -50,6 +50,10 @@ public class GameLogic
                 // 초기 상태 설정 (예: 플레이어 A부터 시작)
                 SetState(playerAState);
                 break;
+            case GameType.MultiPlay:
+                // 멀티 플레이어 모드 초기화 작업
+
+                break;
         }
     }
 

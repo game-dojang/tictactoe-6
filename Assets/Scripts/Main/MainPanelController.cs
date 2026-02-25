@@ -5,17 +5,6 @@ public class MainPanelController : MonoBehaviour
 {
     [SerializeField] private GameObject signupPanelPrefab;
 
-    // 회원가입 패널 테스트
-    void Start()
-    {
-        var signupPanelObject = Instantiate(signupPanelPrefab, transform);
-        signupPanelObject.GetComponent<SigninPanelController>().Show(() =>
-        {
-            Debug.Log("회원가입 패널 테스트");
-        });
-    }
-
-
     public void OnClickSinglePlayButton()
     {
         GameManager.Instance.ChangeToGameScene(GameType.SinglePlay);
@@ -29,5 +18,10 @@ public class MainPanelController : MonoBehaviour
     public void OnClickSettingsButton()
     {
         GameManager.Instance.OpenSettingsPanel();
+    }
+
+    public void OnClickMultiPlayButton()
+    {
+        GameManager.Instance.ChangeToGameScene(GameType.MultiPlay);
     }
 }

@@ -67,7 +67,7 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "tictactoe-6.sln",
+    "dotnet.defaultSolution": "tictactoe-6.slnx",
     "dotrush.roslyn.projectOrSolutionFiles": [
         "c:\\Users\\goyad\\Documents\\GitHub\\tictactoe-6\\tictactoe-6.sln"
     ]

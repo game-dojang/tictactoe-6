@@ -4,7 +4,7 @@ public static class Constants
     public const string SCENE_MAIN = "Main";
     public const string SCENE_GAME = "Game";
 
-    public enum GameType { SinglePlay, DualPlay }
+    public enum GameType { SinglePlay, DualPlay, MultiPlay }
     public enum PlayerType { None, Player1, Player2 }
 
     // 보드 크기
