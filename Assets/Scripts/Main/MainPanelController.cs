@@ -9,7 +9,7 @@ public class MainPanelController : MonoBehaviour
     void Start()
     {
         var signupPanelObject = Instantiate(signupPanelPrefab, transform);
-        signupPanelObject.GetComponent<SignupPanelController>().Show(() =>
+        signupPanelObject.GetComponent<SigninPanelController>().Show(() =>
         {
             Debug.Log("회원가입 패널 테스트");
         });

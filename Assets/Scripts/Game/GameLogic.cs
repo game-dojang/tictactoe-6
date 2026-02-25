@@ -3,6 +3,7 @@ using static Constants;
 
 public class GameLogic
 {
+
     // 화면에 Block을 제어하기 위한 변수
     public BlockController blockController;
 

@@ -899,7 +899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601f9e005f63c7d4a8de1ab38923b7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainPanelController
-  signupPanelPrefab: {fileID: 7508602451149174981, guid: 426bebcf4f63753498c6c9fcd0786a39, type: 3}
+  signupPanelPrefab: {fileID: 7508602451149174981, guid: 9df7b18a94d8a224d98b3de8d8b8afca, type: 3}
 --- !u!1 &904321254
 GameObject:
   m_ObjectHideFlags: 0
