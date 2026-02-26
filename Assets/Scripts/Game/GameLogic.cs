@@ -3,7 +3,6 @@ using static Constants;
 
 public class GameLogic
 {
-
     // 화면에 Block을 제어하기 위한 변수
     public BlockController blockController;
 
@@ -16,6 +15,10 @@ public class GameLogic
 
     // 현재 상태를 나타내는 변수
     private BaseState _currentState;
+
+    // 멀티 플레이를 처리하는 매니저
+    private MultiplayManager _multiplayManager;
+    private string _multiplayRoomId;
 
     // 게임의 결과
     public enum GameResult { None, Win, Lose, Draw }
@@ -52,7 +55,33 @@ public class GameLogic
                 break;
             case GameType.MultiPlay:
                 // 멀티 플레이어 모드 초기화 작업
+                _multiplayManager = new MultiplayManager((state, roomId) =>
+                {
+                    _multiplayRoomId = roomId;
 
+                    switch (state)
+                    {
+                        case MultiplayManagerState.CreateRoom:
+                            // TODO: "상대방을 기다리고 있습니다." 팝업 표시
+                            break;
+                        case MultiplayManagerState.JoinRoom:
+                            playerAState = new MultiplayerState(true, _multiplayManager);
+                            playerBState = new PlayerState(false, _multiplayManager, roomId);
+                            SetState(playerAState);
+                            break;
+                        case MultiplayManagerState.StartGame:
+                            playerAState = new PlayerState(true, _multiplayManager, roomId);
+                            playerBState = new MultiplayerState(false, _multiplayManager);
+                            SetState(playerAState);
+                            break;
+                        case MultiplayManagerState.ExitRoom:
+                            // TODO: "상대방이 나갔습니다." 팝업 표시
+                            break;
+                        case MultiplayManagerState.EndGame:
+                            // TODO: "상대방이 접속을 끊었습니다." 팝업 표시
+                            break;
+                    }
+                });
                 break;
         }
     }

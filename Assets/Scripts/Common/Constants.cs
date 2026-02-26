@@ -11,5 +11,6 @@ public static class Constants
     public const int BOARD_SIZE = 3;
 
     // 서버 주소
-    public const string ServerURL = "http://localhost:3000";
+    public const string ServerURL = "http://localhost:3000";    // HTTP 서버 주소
+    public const string SocketURL = "ws://localhost:3000";      // Socket.IO 서버 주소
 }
