@@ -23,11 +23,26 @@ public class MultiplayerState : BaseState
 
     public override void OnEnter(GameLogic gameLogic)
     {
-        
+        _multiplayManager.OnOpponentMove = (moveData) =>
+        {
+            if (moveData.position >= 0 && moveData.position < Constants.BOARD_SIZE * Constants.BOARD_SIZE)
+            {
+                UnityThread.executeInUpdate(() =>
+                {
+                    HandleMove(gameLogic, moveData.position);
+                    // OX UI 업데이트
+                    GameManager.Instance.SetGameTurn(_playerType);
+                });
+            }
+            else
+            {
+                // TODO: 유효하지 않은 이동 데이터 처리 (예: 로그 출력, 오류 팝업 등)
+            }
+        };
     }
 
     public override void OnExit(GameLogic gameLogic)
     {
-        
+        _multiplayManager.OnOpponentMove = null;
     }
 }

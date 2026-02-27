@@ -56,6 +56,8 @@ public class MultiplayManager: IDisposable
         _socket.Connect();
     }
 
+    #region 서버에서 받은 이벤트에 대한 처리 함수
+
     // 클라이언트가 서버에 접속했더니 아무도 없어서 방을 새롭게 만들었을 때 서버가 호출해주는 함수
     private void CreateRoom(SocketIOResponse response)
     {
@@ -95,6 +97,24 @@ public class MultiplayManager: IDisposable
         var data = response.GetValue<MoveData>();
         OnOpponentMove?.Invoke(data);
     }
+
+    #endregion
+
+    #region 서버로 이벤트를 보내는 함수
+
+    // 플레이어가 마커를 놓았을 때 서버로 이동 정보 전송
+    public void SendPlayerMove(string roomId, int position)
+    {
+        _socket.Emit("doPlayer", new { roomId, position });
+    }
+
+    // 클라이언트가 방을 나갈 때 호출하는 함수
+    public void LeaveRoom(string roomId)
+    {
+        _socket.Emit("leaveRoom", new { roomId });
+    }
+
+    #endregion
 
     public void Dispose()
     {

@@ -1421,8 +1421,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 500}
-  m_SizeDelta: {x: 550, y: 500}
+  m_AnchoredPosition: {x: 0, y: 200}
+  m_SizeDelta: {x: 550, y: 770}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1651903611
 MonoBehaviour:
@@ -1442,7 +1442,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 50
+  m_Spacing: 20
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -1764,7 +1764,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 626328526}
         m_TargetAssemblyTypeName: MainPanelController, Assembly-CSharp
-        m_MethodName: OnClickDualPlayButton
+        m_MethodName: OnClickMultiPlayButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

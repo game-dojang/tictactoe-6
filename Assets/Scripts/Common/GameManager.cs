@@ -71,6 +71,15 @@ public class GameManager : Singleton<GameManager>
     // 씬 전환 (Game > Main)
     public void ChangeToMainScene()
     {
+        _gameLogic?.Dispose();
+        _gameLogic = null;
         SceneManager.LoadScene(SCENE_MAIN);
+    }
+
+    // 게임이 강제 종료했을 때
+    private void OnApplicationQuit()
+    {
+        _gameLogic?.Dispose();
+        _gameLogic = null;
     }
 }

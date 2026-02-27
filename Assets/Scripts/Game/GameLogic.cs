@@ -1,7 +1,8 @@
-using System.Diagnostics;
 using static Constants;
+using System;
+using UnityEngine;
 
-public class GameLogic
+public class GameLogic : IDisposable
 {
     // 화면에 Block을 제어하기 위한 변수
     public BlockController blockController;
@@ -63,22 +64,37 @@ public class GameLogic
                     {
                         case MultiplayManagerState.CreateRoom:
                             // TODO: "상대방을 기다리고 있습니다." 팝업 표시
+
+                            Debug.Log("방 생성됨, 방 ID: " + _multiplayRoomId);
+
                             break;
                         case MultiplayManagerState.JoinRoom:
+
+                            Debug.Log("방 참가됨, 방 ID: " + _multiplayRoomId);
+
                             playerAState = new MultiplayerState(true, _multiplayManager);
-                            playerBState = new PlayerState(false, _multiplayManager, roomId);
+                            playerBState = new PlayerState(false, _multiplayManager, _multiplayRoomId);
                             SetState(playerAState);
                             break;
                         case MultiplayManagerState.StartGame:
-                            playerAState = new PlayerState(true, _multiplayManager, roomId);
+
+                            Debug.Log("게임 시작됨, 방 ID: " + _multiplayRoomId);
+
+                            playerAState = new PlayerState(true, _multiplayManager, _multiplayRoomId);
                             playerBState = new MultiplayerState(false, _multiplayManager);
                             SetState(playerAState);
                             break;
                         case MultiplayManagerState.ExitRoom:
-                            // TODO: "상대방이 나갔습니다." 팝업 표시
+                            // TODO: "본인이 방을 나갔습니다." 팝업 표시
+
+                            Debug.Log("본인이 방을 나감, 방 ID: " + _multiplayRoomId);
+
                             break;
                         case MultiplayManagerState.EndGame:
                             // TODO: "상대방이 접속을 끊었습니다." 팝업 표시
+
+                            Debug.Log("상대방이 접속 끊음, 방 ID: " + _multiplayRoomId);
+
                             break;
                     }
                 });
@@ -152,5 +168,11 @@ public class GameLogic
         {
             GameManager.Instance.ChangeToMainScene();
         });
+    }
+
+    public void Dispose()
+    {
+        _multiplayManager?.LeaveRoom(_multiplayRoomId);
+        _multiplayManager?.Dispose();
     }
 }

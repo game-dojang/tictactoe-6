@@ -37,16 +37,34 @@ public class PlayerState : BaseState
             HandleMove(gameLogic, blockIndex);
         };
 
-        // OX UI 업데이트
-        GameManager.Instance.SetGameTurn(_playerType);
+        if (_isMultiplayer)
+        {
+            UnityThread.executeInUpdate(() =>
+            {
+                // OX UI 업데이트
+                GameManager.Instance.SetGameTurn(_playerType);
+            });
+        }
+        else
+        {
+            // OX UI 업데이트
+            GameManager.Instance.SetGameTurn(_playerType);
+        }
     }
 
     public override void HandleMove(GameLogic gameLogic, int index)
     {
         ProcessMove(gameLogic, index, _playerType);
+
+        // 멀티 플레이인 경우, 상대방에게도 이동 정보 전송
+        if (_isMultiplayer)
+        {
+            _multiplayManager.SendPlayerMove(_multiplayRoomId, index);
+        }
     }
 
     public override void OnExit(GameLogic gameLogic)
     {
+        gameLogic.blockController.onBlockClicked = null;
     }
 }
